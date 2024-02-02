@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text Similarity</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        form {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-weight: bold;
+        }
+        
+        textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: none;
+            font-size: 16px; /* Adjust the font size as needed */
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 14px 20px;
+            margin: 2px 0;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #result {
+            text-align: center;
+            background-color: #f2f2f2;
+            color: #333;
+            padding: 10px;
+        }
+
+        #similarityScoreLabel {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Text Similarity</h1>
+    
+    <form action="/" method="POST">
+        <div>
+            <label id="note_label" style="color:red; text-align: center;">Note: I am suggesting the option of Hugging Faces for accurate similarity</label>
+            <br><br>
+            <label for="text1">Text Description 1:</label><br>
+            <textarea id="text1" name="text1" rows="4" cols="50" placeholder="Enter text"></textarea>
+        </div>
+        <div>
+            <label for="text2">Text Description 2:</label><br>
+            <textarea id="text2" name="text2" rows="4" cols="50" placeholder="Enter text"></textarea>
+        </div>
+        <div>
+            <label for="dropdown">Similarity Type:</label>
+            <select id="dropdown" name="dropdown" style="font-size: 16px;"> <!-- Adjust the font size as needed -->
+                <option value="Hugging Faces">Hugging Faces</option>
+                <option value="Cosine_similarity">Cosine_similarity</option>
+                <option value="jaccard_similarity">Jaccard Similarity</option>
+                <option value="euclidean_similarity">Euclidean Similarity</option>
+                <option value="compression_similarity">Compression Similarity</option>
+            </select>
+        </div>
+        <br>
+        <input type="submit" value="Submit">
+    </form>
+    {% if model_pred %}
+    <div id="result">
+        <label id="similarityScoreLabel">Similarity Score: {{model_pred}} </label>
+    </div>
+    {% endif %}
+</body>
+</html>
